@@ -2,6 +2,12 @@ import React from 'react';
 
 export default function DifficultySettings() {
     return (
-        <div>Select for difficulty settings.</div>
+        <div>
+            <span>Difficulty: </span>
+            <select>
+                <option>Easy</option>
+                <option>Hard</option>
+            </select>
+        </div>
     );
 }
