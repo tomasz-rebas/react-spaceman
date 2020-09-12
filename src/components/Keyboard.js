@@ -11,7 +11,7 @@ export default function Keyboard() {
     const thirdRowButtons = getButtons(thirdRowLetters);
 
     return (
-        <div className="vertical-margin">
+        <div className="keyboard">
             <div>{firstRowButtons}</div>
             <div>{secondRowButtons}</div>
             <div>{thirdRowButtons}</div>

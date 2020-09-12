@@ -9,7 +9,6 @@ import DifficultySettings from './DifficultySettings';
 // state variables
 
 // gameOngoing (true/false)
-// 
 
 export default function App() {
     return (

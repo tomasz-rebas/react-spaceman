@@ -5,7 +5,10 @@ body {
     text-align: center;
 }
 
-.vertical-margin {
+.keyboard,
+.game-state-alert,
+.reset-button,
+.difficulty-settings {
     margin-top: 10px;
     margin-bottom: 10px;
 }
