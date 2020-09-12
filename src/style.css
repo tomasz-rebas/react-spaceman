@@ -2,4 +2,10 @@ body {
     color: #ddd;
     background-color: #333;
     font-family: Calibri;
+    text-align: center;
+}
+
+.vertical-margin {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
