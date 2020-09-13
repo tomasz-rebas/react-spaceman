@@ -1,7 +1,12 @@
 const data = [
     'apple',
     'mango',
-    'strawberry'
+    'strawberry',
+    'pineapple',
+    'nectarine',
+    'plum',
+    'lime',
+    'blueberry'
 ];
 
 export default data;
