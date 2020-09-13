@@ -21,6 +21,6 @@ export default function Keyboard() {
 
 function getButtons(letters) {
     return letters.map(letter => {
-        return <button>{letter}</button>
+        return <button key={letter}>{letter}</button>
     })
 }
