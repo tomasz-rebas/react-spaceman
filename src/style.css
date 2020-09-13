@@ -12,3 +12,16 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.secret-word {
+    margin-bottom: 20px;
+}
+
+.letter-field {
+    font-size: 2em;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-bottom: 3px solid;
+    width: 25px;
+    display: inline-block;
+}
