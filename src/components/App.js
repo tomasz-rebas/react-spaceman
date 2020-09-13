@@ -3,7 +3,6 @@ import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
 import Keyboard from './Keyboard';
 import GameStateAlert from './GameStateAlert';
-import StartButton from './StartButton';
 import DifficultySettings from './DifficultySettings';
 
 // state variables
@@ -18,7 +17,7 @@ export default function App() {
             <SecretWord/>
             <Keyboard/>
             <GameStateAlert/>
-            <StartButton/>
+            <button className="start-button">Start</button>
             <DifficultySettings/>
         </div>
     );

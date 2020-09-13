@@ -7,7 +7,7 @@ body {
 
 .keyboard,
 .game-state-alert,
-.reset-button,
+.start-button,
 .difficulty-settings {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -24,4 +24,9 @@ body {
     border-bottom: 3px solid;
     width: 25px;
     display: inline-block;
+}
+
+.start-button {
+    width: 100px;
+    height: 30px;
 }
