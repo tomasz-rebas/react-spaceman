@@ -3,7 +3,7 @@ import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
 import Keyboard from './Keyboard';
 import GameStateAlert from './GameStateAlert';
-import ResetButton from './ResetButton';
+import StartButton from './StartButton';
 import DifficultySettings from './DifficultySettings';
 
 // state variables
@@ -18,7 +18,7 @@ export default function App() {
             <SecretWord/>
             <Keyboard/>
             <GameStateAlert/>
-            <ResetButton/>
+            <StartButton/>
             <DifficultySettings/>
         </div>
     );
