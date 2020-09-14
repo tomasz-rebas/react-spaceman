@@ -6,10 +6,14 @@ body {
 }
 
 .keyboard,
-.game-state-alert,
 .start-button,
 .difficulty-settings {
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.game-state-alert {
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 

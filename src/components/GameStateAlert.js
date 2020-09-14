@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function GameStateAlert() {
+export default function GameStateAlert( { gameStateAlert } ) {
     return (
-        <div className="game-state-alert">A game state alert.</div>
+        <div className="game-state-alert">{gameStateAlert}</div>
     );
 }

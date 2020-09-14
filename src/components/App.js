@@ -27,12 +27,14 @@ export default function App() {
 
     const [data, setData] = useState([]);
     const [letterFields, setLetterFields] = useState(<i>initial value of setLetterFields</i>);
+    const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
 
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
         setLetterFields(secretWord.map((letter, index) => {
             return <span className="letter-field" key={'letter-field-' + index}>{letter}</span>
         }));
+        setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
     }
 
     // https://mammaldiversity.org/api
@@ -45,7 +47,7 @@ export default function App() {
             <SpacemanPicture/>
             <SecretWord letterFields={letterFields}/>
             <Keyboard/>
-            <GameStateAlert/>
+            <GameStateAlert gameStateAlert={gameStateAlert}/>
             <StartButton startGame={startGame}/>
             <DifficultySettings/>
         </div>
