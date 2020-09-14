@@ -5,7 +5,6 @@ export default function StartButton() {
     return (
         <button 
             className="start-button"
-            onClick=""
         >
             Start
         </button>
