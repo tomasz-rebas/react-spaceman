@@ -10,7 +10,7 @@ Features:
 - two difficulty modes,
 - vocabulary fetched from an external API.
 
-I use this app as a part of my React hooks training. There are no class-based components here (as was the case with my previous React apps).
+I use this app as a part of my React hooks practice. There are no class-based components here (as was the case with my previous React apps).
 
 Development in progress! Some components may not be functional yet.
 
