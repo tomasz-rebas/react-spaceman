@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-export default function SecretWord() {
+export default function SecretWord({ letterFields }) {
 
     return (
         <div className="secret-word">
-            {/* {letterFields} */}
+            {letterFields}
         </div>
     );
 }

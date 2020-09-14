@@ -43,10 +43,6 @@ export default function App() {
         }));
     }
 
-    // const letterFields = secretWord.map((letter, index) => {
-    //     return <span className="letter-field" key={'letter-field-' + index}>{letter}</span>
-    // });
-
     // https://mammaldiversity.org/api
     // https://www.fruitmap.org/api/trees
     // https://anfi.tk/greekApi/person/getAll
@@ -55,7 +51,7 @@ export default function App() {
         <div>
             <h1>Spaceman</h1>
             <SpacemanPicture/>
-            <SecretWord/>
+            <SecretWord letterFields={letterFields}/>
             <Keyboard/>
             <GameStateAlert/>
             <StartButton/>
