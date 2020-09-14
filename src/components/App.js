@@ -54,7 +54,7 @@ export default function App() {
             <SecretWord letterFields={letterFields}/>
             <Keyboard/>
             <GameStateAlert/>
-            <StartButton/>
+            <StartButton startGame={startGame}/>
             <DifficultySettings/>
         </div>
     );
