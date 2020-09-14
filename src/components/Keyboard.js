@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Keyboard() {
 
-    const firstRowLetters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
-    const secondRowLetters = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
-    const thirdRowLetters = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
+    const letters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 
+                        'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
+                            'z', 'x', 'c', 'v', 'b', 'n', 'm'];
 
-    const firstRowButtons = getButtons(firstRowLetters);
-    const secondRowButtons = getButtons(secondRowLetters);
-    const thirdRowButtons = getButtons(thirdRowLetters);
+    const [keyboardButtons, setKeyboardButtons] = useState(letters.map(letter => {
+        if (letter === 'p' || letter === 'l') {
+            return (
+                <span key={letter}>
+                    <button>{letter}</button>
+                    <br/>
+                </span>
+            )
+        } else {
+            return (
+                <span key={letter}>
+                    <button>{letter}</button>
+                </span>
+            ) 
+        }
+    }));
 
     return (
         <div className="keyboard">
-            <div>{firstRowButtons}</div>
-            <div>{secondRowButtons}</div>
-            <div>{thirdRowButtons}</div>
+            {keyboardButtons}
         </div>
     );
-}
-
-function getButtons(letters) {
-    return letters.map(letter => {
-        return <button key={letter}>{letter}</button>
-    })
 }
