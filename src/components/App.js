@@ -6,10 +6,6 @@ import GameStateAlert from './GameStateAlert';
 import StartButton from './StartButton';
 import DifficultySettings from './DifficultySettings';
 
-// state variables
-
-// gameOngoing (true/false)
-
 export default function App() {
     
     useEffect(() => {
