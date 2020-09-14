@@ -24,6 +24,7 @@ export default function App() {
     const [data, setData] = useState([]);
     const [letterFields, setLetterFields] = useState(<i>initial value of setLetterFields</i>);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
+    const [isGameOngoing, setIsGameOngoing] = useState(false);
 
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
@@ -38,6 +39,7 @@ export default function App() {
             );
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
+        setIsGameOngoing(true);
     }
 
     // https://mammaldiversity.org/api
@@ -51,8 +53,11 @@ export default function App() {
             <SecretWord letterFields={letterFields}/>
             <Keyboard/>
             <GameStateAlert gameStateAlert={gameStateAlert}/>
-            <StartButton startGame={startGame}/>
-            <DifficultySettings/>
+            <StartButton 
+                startGame={startGame}
+                isGameOngoing={isGameOngoing}
+            />
+            <DifficultySettings isGameOngoing={isGameOngoing}/>
         </div>
     );
 }
