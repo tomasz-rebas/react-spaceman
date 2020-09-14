@@ -58,6 +58,11 @@ export default function App() {
                 isGameOngoing={isGameOngoing}
             />
             <DifficultySettings isGameOngoing={isGameOngoing}/>
+            <footer>
+                <i>Development in progress!</i>
+                <br/>
+                <i>Some components may not be functional yet.</i>
+            </footer>
         </div>
     );
 }
