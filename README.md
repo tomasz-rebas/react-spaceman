@@ -1,3 +1,19 @@
+## Spaceman
+
+Spaceman is a variation of popular paper and pencil guessing game. The player has to guess a randomized word by suggesting letters within a certain number of guesses.
+
+Each correct suggestion fills the empty fields with letters, eventually showing the whole word.
+Each wrong guess draws more elements in the picture, eventually showing a man being captured by a spaceship - which means the game is over.
+
+Features:
+- QWERTY keyboard for letter suggestions,
+- two difficulty modes,
+- vocabulary fetched from an external API.
+
+I use this app as a part of my React hooks training. There are no class-based components here (as was the case with my previous React apps).
+
+Development in progress! Some components may not be functional yet.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
