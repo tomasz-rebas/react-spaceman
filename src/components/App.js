@@ -28,7 +28,14 @@ export default function App() {
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
         setLetterFields(secretWord.map((letter, index) => {
-            return <span className="letter-field" key={'letter-field-' + index}>{letter}</span>
+            return (
+                <span 
+                    className="letter-field"
+                    key={'letter-field-' + index}
+                >
+                    {letter}
+                </span>
+            );
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
     }
