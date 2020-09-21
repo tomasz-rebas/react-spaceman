@@ -1,0 +1,75 @@
+[
+    {     
+        "id": 1,
+        "category": "fruits",
+        "words": [
+            "apple",
+            "banana",
+            "pear",
+            "strawberry",
+            "raspberry",
+            "mango",
+            "blueberry",
+            "melon",
+            "plum",
+            "grapefruit",
+            "mandarin",
+            "lime",
+            "pineapple",
+            "kiwi",
+            "orange",
+            "nectarine",
+            "watermelon"
+        ]
+    },
+    {     
+        "id": 2,
+        "category": "greek gods",
+        "words": [
+            "aphrodite",
+            "apollo",
+            "ares",
+            "artemis",
+            "athena",
+            "demeter",
+            "dionysus",
+            "hades",
+            "hephaestus",
+            "hera",
+            "hermes",
+            "hestia",
+            "poseidon",
+            "zeus",
+            "hyperion",
+            "atlas",
+            "helios",
+            "perses",
+            "prometheus"
+        ]
+    },
+    {     
+        "id": 3,
+        "category": "countries",
+        "words": [
+            "poland",
+            "norway",
+            "england",
+            "spain",
+            "germany",
+            "russia",
+            "sweden",
+            "belarus",
+            "belgium",
+            "argentina",
+            "canada",
+            "egypt",
+            "croatia",
+            "france",
+            "finland",
+            "kazakhstan",
+            "monaco",
+            "pakistan",
+            "portugal"
+        ]
+    }
+]
