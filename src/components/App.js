@@ -17,7 +17,7 @@ export default function App() {
         const fetchData = await fetch('https://www.fruitmap.org/api/trees');
         const data = await fetchData.json();
         const dataStripped = data.map(element => {
-            return element.name;
+            return element.name.toLowerCase();
         });
         setData(dataStripped);
     }

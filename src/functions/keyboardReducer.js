@@ -2,11 +2,7 @@ export default function keyboardReducer(state, action) {
     switch (action.type) {
         case "DISABLE_ONE": {
             const alteredButtons = state.map((letter, index) => {
-                if (index === action.index) {
-                    return [letter[0], false];
-                } else {
-                    return letter;
-                }
+                return index === action.index ? [letter[0], false] : letter;
             });
             return alteredButtons;
         }
