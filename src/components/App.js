@@ -23,7 +23,7 @@ export default function App() {
     }
 
     const [data, setData] = useState([]);
-    const [letterFieldsData, setLetterFieldsData] = useState([]);
+    const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
 
@@ -38,9 +38,9 @@ export default function App() {
     ]);
 
     function startGame() {
-        const secretWord = data[Math.floor(Math.random() * data.length)].split('');
-        const initiallyDisplayedLetter = secretWord[Math.floor(Math.random() * secretWord.length)];
-        setLetterFieldsData(secretWord.map((letter) => {
+        const randomWord = data[Math.floor(Math.random() * data.length)].split('');
+        const initiallyDisplayedLetter = randomWord[Math.floor(Math.random() * randomWord.length)];
+        setSecretWordData(randomWord.map((letter) => {
             return {
                 letter: letter,
                 visible: letter === initiallyDisplayedLetter ? true : false
@@ -59,7 +59,7 @@ export default function App() {
         <div>
             <h1>Spaceman</h1>
             <SpacemanPicture/>
-            <SecretWord letterFieldsData={letterFieldsData}/>
+            <SecretWord secretWordData={secretWordData}/>
             <Keyboard
                 letters={letters}
                 dispatch={dispatch}

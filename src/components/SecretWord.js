@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function SecretWord( { letterFieldsData } ) {
+export default function SecretWord( { secretWordData } ) {
 
-    const letterFields = letterFieldsData.map((letter, index) => {
+    const letterFields = secretWordData.map((letter, index) => {
         return (
             <span 
                 className="letter-field"
