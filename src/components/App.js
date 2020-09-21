@@ -56,7 +56,7 @@ export default function App() {
     }
 
     function verifyLetter(e) {
-        console.log(e.target.name);
+        const { name } = e.target;
     }
 
     return (
