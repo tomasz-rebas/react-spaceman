@@ -39,13 +39,14 @@ export default function App() {
 
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
+        const initiallyDisplayedLetter = secretWord[Math.floor(Math.random() * secretWord.length)];
         setLetterFields(secretWord.map((letter, index) => {
             return (
                 <span 
                     className="letter-field"
                     key={'letter-field-' + index}
                 >
-                    {letter}
+                    {letter === initiallyDisplayedLetter ? letter : ''}
                 </span>
             );
         }));
