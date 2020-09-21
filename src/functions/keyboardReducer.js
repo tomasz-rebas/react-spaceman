@@ -18,7 +18,7 @@ export default function keyboardReducer(state, action) {
         }
         case "ENABLE_ALL": {
             const enabledButtons = state.map(letter => {
-                return [letter[0], true];
+                return letter[0] === action.except ? [letter[0], false] : [letter[0], true];
             });
             return enabledButtons;
         }

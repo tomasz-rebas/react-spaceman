@@ -52,7 +52,7 @@ export default function App() {
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setIsGameOngoing(true);
-        dispatch({ type: 'ENABLE_ALL' });
+        dispatch({ type: 'ENABLE_ALL', except: initiallyDisplayedLetter });
     }
 
     function verifyLetter(e) {
