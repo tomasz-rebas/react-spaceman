@@ -45,6 +45,7 @@ export default function App() {
                 <span 
                     className="letter-field"
                     key={'letter-field-' + index}
+                    value={letter}
                 >
                     {letter === initiallyDisplayedLetter ? letter : ''}
                 </span>
