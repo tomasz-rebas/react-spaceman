@@ -53,6 +53,9 @@ export default function App() {
 
     function verifyLetter(e) {
         const { name } = e.target;
+        setSecretWordData(secretWordData.map(element => {
+            return element.letter === name ? { letter: element.letter, visible: true } : element;
+        }))
     }
 
     return (
