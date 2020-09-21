@@ -1,31 +1,25 @@
 import React, { useState, useEffect, useReducer } from 'react';
+
 import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
 import Keyboard from './Keyboard';
 import GameStateAlert from './GameStateAlert';
 import StartButton from './StartButton';
 import DifficultySettings from './DifficultySettings';
+
 import keyboardReducer from '../functions/keyboardReducer';
+import vocabularyData from '../data.json';
 
 export default function App() {
-    
-    useEffect(() => {
-        fetchData();
-    }, []);
 
-    const fetchData = async () => {
-        const fetchData = await fetch('https://www.fruitmap.org/api/trees');
-        const data = await fetchData.json();
-        const dataStripped = data.map(element => {
-            return element.name.toLowerCase();
-        });
-        setData(dataStripped);
-    }
-
-    const [data, setData] = useState([]);
+    const [categoryIndex, setCategoryIndex] = useState(0);
     const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
+
+    useEffect(() => {
+        randomizeCategory();
+    }, []);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
         ['q', false], ['w', false], ['e', false], ['r', false],
@@ -37,8 +31,13 @@ export default function App() {
         ['n', false], ['m', false]
     ]);
 
+    function randomizeCategory() {
+        setCategoryIndex(Math.floor(Math.random() * vocabularyData.length));
+    }
+
     function startGame() {
-        const randomWord = data[Math.floor(Math.random() * data.length)].split('');
+        const words = vocabularyData[categoryIndex].words;
+        const randomWord = words[Math.floor(Math.random() * words.length)].split('');
         const initiallyDisplayedLetter = randomWord[Math.floor(Math.random() * randomWord.length)];
         setSecretWordData(randomWord.map((letter) => {
             return {
@@ -62,7 +61,11 @@ export default function App() {
         <div>
             <h1>Spaceman</h1>
             <SpacemanPicture/>
-            <SecretWord secretWordData={secretWordData}/>
+            <SecretWord 
+                secretWordData={secretWordData}
+                category={vocabularyData[categoryIndex].category}
+                isGameOngoing={isGameOngoing}
+            />
             <Keyboard
                 letters={letters}
                 dispatch={dispatch}
