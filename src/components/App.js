@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
 import Keyboard from './Keyboard';
 import GameStateAlert from './GameStateAlert';
 import StartButton from './StartButton';
 import DifficultySettings from './DifficultySettings';
+import keyboardReducer from '../functions/keyboardReducer';
 
 export default function App() {
     
@@ -26,6 +27,16 @@ export default function App() {
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
 
+    const [letters, dispatch] = useReducer(keyboardReducer, [
+        ['q', false], ['w', false], ['e', false], ['r', false],
+        ['t', false], ['y', false], ['u', false], ['i', false],
+        ['o', false], ['p', false], ['a', false], ['s', false],
+        ['d', false], ['f', false], ['g', false], ['h', false],
+        ['j', false], ['k', false], ['l', false], ['z', false],
+        ['x', false], ['c', false], ['v', false], ['b', false],
+        ['n', false], ['m', false]
+    ]);
+
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
         setLetterFields(secretWord.map((letter, index) => {
@@ -40,18 +51,19 @@ export default function App() {
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setIsGameOngoing(true);
+        dispatch({ type: 'ENABLE_ALL' })
     }
 
-    // https://mammaldiversity.org/api
-    // https://www.fruitmap.org/api/trees
-    // https://anfi.tk/greekApi/person/getAll
 
     return (
         <div>
             <h1>Spaceman</h1>
             <SpacemanPicture/>
             <SecretWord letterFields={letterFields}/>
-            <Keyboard/>
+            <Keyboard
+                letters={letters}
+                dispatch={dispatch}
+            />
             <GameStateAlert gameStateAlert={gameStateAlert}/>
             <StartButton 
                 startGame={startGame}
