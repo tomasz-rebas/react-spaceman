@@ -52,9 +52,12 @@ export default function App() {
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setIsGameOngoing(true);
-        dispatch({ type: 'ENABLE_ALL' })
+        dispatch({ type: 'ENABLE_ALL' });
     }
 
+    function verifyLetter(e) {
+        console.log(e.target.name);
+    }
 
     return (
         <div>
@@ -64,6 +67,7 @@ export default function App() {
             <Keyboard
                 letters={letters}
                 dispatch={dispatch}
+                verifyLetter={verifyLetter}
             />
             <GameStateAlert gameStateAlert={gameStateAlert}/>
             <StartButton 

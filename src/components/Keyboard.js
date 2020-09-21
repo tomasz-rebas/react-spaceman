@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Keyboard({ letters, dispatch }) {
+export default function Keyboard({ letters, dispatch, verifyLetter }) {
 
     return (
         <div className="keyboard">
@@ -9,8 +9,10 @@ export default function Keyboard({ letters, dispatch }) {
                     <span key={letter[0]}>
                         <button
                             disabled={letter[1] ? false : true}
-                            onClick={() => {
-                                dispatch({ type: 'DISABLE_ONE', index: index })
+                            name={letter[0]}
+                            onClick={(e) => {
+                                dispatch({ type: 'DISABLE_ONE', index: index });
+                                verifyLetter(e);
                             }}
                         >
                             {letter[0]}
