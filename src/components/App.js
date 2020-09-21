@@ -23,7 +23,7 @@ export default function App() {
     }
 
     const [data, setData] = useState([]);
-    const [letterFields, setLetterFields] = useState(<i>initial value of setLetterFields</i>);
+    const [letterFieldsData, setLetterFieldsData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
 
@@ -40,16 +40,11 @@ export default function App() {
     function startGame() {
         const secretWord = data[Math.floor(Math.random() * data.length)].split('');
         const initiallyDisplayedLetter = secretWord[Math.floor(Math.random() * secretWord.length)];
-        setLetterFields(secretWord.map((letter, index) => {
-            return (
-                <span 
-                    className="letter-field"
-                    key={'letter-field-' + index}
-                    value={letter}
-                >
-                    {letter === initiallyDisplayedLetter ? letter : ''}
-                </span>
-            );
+        setLetterFieldsData(secretWord.map((letter) => {
+            return {
+                letter: letter,
+                visible: letter === initiallyDisplayedLetter ? true : false
+            }
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setIsGameOngoing(true);
@@ -64,7 +59,7 @@ export default function App() {
         <div>
             <h1>Spaceman</h1>
             <SpacemanPicture/>
-            <SecretWord letterFields={letterFields}/>
+            <SecretWord letterFieldsData={letterFieldsData}/>
             <Keyboard
                 letters={letters}
                 dispatch={dispatch}
