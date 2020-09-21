@@ -4,7 +4,7 @@ export default function SpacemanPicture() {
     const sizeMultiplier = 0.6;
     return (
         <img 
-            src="images/spaceman.png"
+            src="images/stage_9.png"
             alt="Spaceman"
             width={300 * sizeMultiplier}
             height={400 * sizeMultiplier}
