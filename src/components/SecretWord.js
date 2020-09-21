@@ -2,14 +2,14 @@ import React from 'react';
 
 export default function SecretWord( { secretWordData } ) {
 
-    const letterFields = secretWordData.map((letter, index) => {
+    const letterFields = secretWordData.map((element, index) => {
         return (
             <span 
                 className="letter-field"
                 key={'letter-field-' + index}
-                value={letter.letter}
+                value={element.letter}
             >
-                {letter.visible ? letter.letter : ''}
+                {element.visible ? element.letter : ''}
             </span>
         );
     });
