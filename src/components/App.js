@@ -47,6 +47,7 @@ export default function App() {
             }
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
+        setDrawingStage(1);
         setIsGameOngoing(true);
         dispatch({ type: 'ENABLE_ALL', except: initiallyDisplayedLetter });
     }
@@ -65,6 +66,8 @@ export default function App() {
 
         if (letterGuessed) {
             setSecretWordData(newSecretWordData);
+        } else {      
+            setDrawingStage(drawingStage + 1);
         }
     }
 
