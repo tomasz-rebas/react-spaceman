@@ -56,11 +56,15 @@ export default function App() {
         const { name } = e.target;
         let newSecretWordData = secretWordData;
         let letterGuessed = false;
+        let allLettersVisisble = true;
 
         for (let i = 0; i < secretWordData.length; i++) {
             if (secretWordData[i].letter === name) {
                 newSecretWordData[i].visible = true;
                 letterGuessed = true;
+            }
+            if (secretWordData[i].visible === false) {
+                allLettersVisisble = false;
             }
         }
 
@@ -68,6 +72,10 @@ export default function App() {
             setSecretWordData(newSecretWordData);
         } else {      
             setDrawingStage(drawingStage + 1);
+        }
+
+        if (allLettersVisisble) {
+            console.log('You win!');
         }
     }
 
