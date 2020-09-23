@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function GameStateAlert( { gameStateAlert, gameWon, gameOngoing, firstGameStarted } ) {
+export default function GameStateAlert( { gameStateAlert, isGameWon, isGameOngoing, isFirstGameStarted } ) {
 
     let alertStyle;
 
-    if (gameOngoing || !firstGameStarted) {
+    if (isGameOngoing || !isFirstGameStarted) {
         alertStyle = {}
     } else {
-        alertStyle = gameWon ? {
+        alertStyle = isGameWon ? {
                 fontSize: '1.3em', 
                 color: 'lime'
             } : {

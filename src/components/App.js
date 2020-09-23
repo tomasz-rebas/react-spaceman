@@ -15,9 +15,9 @@ export default function App() {
     const [categoryIndex, setCategoryIndex] = useState(0);
     const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
-    const [gameOngoing, setGameOngoing] = useState(false);
-    const [firstGameStarted, setFirstGameStarted] = useState(false);
-    const [gameWon, setGameWon] = useState(false);
+    const [isGameOngoing, setIsGameOngoing] = useState(false);
+    const [isFirstGameStarted, setIsFirstGameStarted] = useState(false);
+    const [gameWon, setIsGameWon] = useState(false);
     const [drawingStage, setDrawingStage] = useState(9);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
@@ -36,7 +36,7 @@ export default function App() {
         const randomWord = words[Math.floor(Math.random() * words.length)].split('');
         const initiallyDisplayedLetter = randomWord[Math.floor(Math.random() * randomWord.length)];
 
-        setGameWon(false);
+        setIsGameWon(false);
         setCategoryIndex(randomCategoryIndex);
         setSecretWordData(randomWord.map((letter) => {
             return {
@@ -46,8 +46,8 @@ export default function App() {
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setDrawingStage(1);
-        setGameOngoing(true);
-        setFirstGameStarted(true);
+        setIsGameOngoing(true);
+        setIsFirstGameStarted(true);
         
         dispatch({ type: 'ENABLE_ALL', except: initiallyDisplayedLetter });
     }
@@ -87,9 +87,9 @@ export default function App() {
 
     function endGame(winner) {
         dispatch({ type: 'DISABLE_ALL' });
-        setGameOngoing(false);
+        setIsGameOngoing(false);
         setGameStateAlert(winner ? 'You win!' : 'You lose!');
-        setGameWon(winner);
+        setIsGameWon(winner);
     }
 
     return (
@@ -99,7 +99,7 @@ export default function App() {
             <SecretWord 
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
-                firstGameStarted={firstGameStarted}
+                isFirstGameStarted={isFirstGameStarted}
             />
             <Keyboard
                 letters={letters}
@@ -108,15 +108,15 @@ export default function App() {
             />
             <GameStateAlert 
                 gameStateAlert={gameStateAlert}
-                gameWon={gameWon}
-                gameOngoing={gameOngoing}
-                firstGameStarted={firstGameStarted}
+                isGameWon={gameWon}
+                isGameOngoing={isGameOngoing}
+                isFirstGameStarted={isFirstGameStarted}
             />
             <StartButton 
                 startGame={startGame}
-                gameOngoing={gameOngoing}
+                isGameOngoing={isGameOngoing}
             />
-            <DifficultySettings gameOngoing={gameOngoing}/>
+            <DifficultySettings isGameOngoing={isGameOngoing}/>
             <footer>
                 <i>Development in progress!</i>
                 <br/>
