@@ -14,6 +14,7 @@ export default function Keyboard({ letters, dispatch, verifyLetter }) {
                                 dispatch({ type: 'DISABLE_ONE', index: index });
                                 verifyLetter(e);
                             }}
+                            className="keyboard-button"
                         >
                             {letter[0]}
                         </button>

@@ -12,6 +12,11 @@ body {
     margin-bottom: 10px;
 }
 
+.keyboard-button {
+    font-size: 1.2em;
+    width: 30px;
+}
+
 .game-state-alert {
     margin-top: 20px;
     margin-bottom: 10px;
