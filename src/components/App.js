@@ -16,11 +16,8 @@ export default function App() {
     const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
+    const [gameStarted, setGameStarted] = useState(false);
     const [drawingStage, setDrawingStage] = useState(9);
-
-    useEffect(() => {
-        randomizeCategory();
-    }, []);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
         ['q', false], ['w', false], ['e', false], ['r', false],
@@ -32,14 +29,13 @@ export default function App() {
         ['n', false], ['m', false]
     ]);
 
-    function randomizeCategory() {
-        setCategoryIndex(Math.floor(Math.random() * vocabularyData.length));
-    }
-
     function startGame() {
-        const words = vocabularyData[categoryIndex].words;
+        const randomCategoryIndex = Math.floor(Math.random() * vocabularyData.length);
+        const words = vocabularyData[randomCategoryIndex].words;
         const randomWord = words[Math.floor(Math.random() * words.length)].split('');
         const initiallyDisplayedLetter = randomWord[Math.floor(Math.random() * randomWord.length)];
+
+        setCategoryIndex(randomCategoryIndex);
         setSecretWordData(randomWord.map((letter) => {
             return {
                 letter: letter,
@@ -49,6 +45,8 @@ export default function App() {
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setDrawingStage(1);
         setIsGameOngoing(true);
+        setGameStarted(true);
+        
         dispatch({ type: 'ENABLE_ALL', except: initiallyDisplayedLetter });
     }
 
@@ -76,7 +74,13 @@ export default function App() {
 
         if (allLettersVisisble) {
             console.log('You win!');
+            endGame();
         }
+    }
+
+    function endGame() {
+        dispatch({ type: 'DISABLE_ALL' });
+        setIsGameOngoing(false);
     }
 
     return (
@@ -86,7 +90,7 @@ export default function App() {
             <SecretWord 
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
-                isGameOngoing={isGameOngoing}
+                gameStarted={gameStarted}
             />
             <Keyboard
                 letters={letters}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SecretWord( { secretWordData, category, isGameOngoing } ) {
+export default function SecretWord( { secretWordData, category, gameStarted } ) {
 
     const letterFields = secretWordData.map((element, index) => {
         return (
@@ -16,7 +16,7 @@ export default function SecretWord( { secretWordData, category, isGameOngoing } 
 
     return (
         <div>
-            <p>{isGameOngoing ? 'Category: ' + category : ''}</p>
+            <p>{gameStarted ? 'Category: ' + category : ''}</p>
             <div className="secret-word">
                 {letterFields}
             </div>
