@@ -52,9 +52,19 @@ export default function App() {
 
     function verifyLetter(e) {
         const { name } = e.target;
-        setSecretWordData(secretWordData.map(element => {
-            return element.letter === name ? { letter: element.letter, visible: true } : element;
-        }))
+        let newSecretWordData = secretWordData;
+        let letterGuessed = false;
+
+        for (let i = 0; i < secretWordData.length; i++) {
+            if (secretWordData[i].letter === name) {
+                newSecretWordData[i].visible = true;
+                letterGuessed = true;
+            }
+        }
+
+        if (letterGuessed) {
+            setSecretWordData(newSecretWordData);
+        }
     }
 
     return (
