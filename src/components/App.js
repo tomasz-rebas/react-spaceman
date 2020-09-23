@@ -16,6 +16,7 @@ export default function App() {
     const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
     const [isGameOngoing, setIsGameOngoing] = useState(false);
+    const [drawingStage, setDrawingStage] = useState(9);
 
     useEffect(() => {
         randomizeCategory();
@@ -70,7 +71,7 @@ export default function App() {
     return (
         <div>
             <h1>Spaceman</h1>
-            <SpacemanPicture/>
+            <SpacemanPicture drawingStage={drawingStage}/>
             <SecretWord 
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
