@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useReducer } from 'react';
 
 import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
@@ -15,8 +15,9 @@ export default function App() {
     const [categoryIndex, setCategoryIndex] = useState(0);
     const [secretWordData, setSecretWordData] = useState([]);
     const [gameStateAlert, setGameStateAlert] = useState('Click to start!');
-    const [isGameOngoing, setIsGameOngoing] = useState(false);
-    const [gameStarted, setGameStarted] = useState(false);
+    const [gameOngoing, setGameOngoing] = useState(false);
+    const [firstGameStarted, setFirstGameStarted] = useState(false);
+    const [gameWon, setGameWon] = useState(false);
     const [drawingStage, setDrawingStage] = useState(9);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
@@ -35,6 +36,7 @@ export default function App() {
         const randomWord = words[Math.floor(Math.random() * words.length)].split('');
         const initiallyDisplayedLetter = randomWord[Math.floor(Math.random() * randomWord.length)];
 
+        setGameWon(false);
         setCategoryIndex(randomCategoryIndex);
         setSecretWordData(randomWord.map((letter) => {
             return {
@@ -44,8 +46,8 @@ export default function App() {
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
         setDrawingStage(1);
-        setIsGameOngoing(true);
-        setGameStarted(true);
+        setGameOngoing(true);
+        setFirstGameStarted(true);
         
         dispatch({ type: 'ENABLE_ALL', except: initiallyDisplayedLetter });
     }
@@ -80,7 +82,9 @@ export default function App() {
 
     function endGame() {
         dispatch({ type: 'DISABLE_ALL' });
-        setIsGameOngoing(false);
+        setGameOngoing(false);
+        setGameStateAlert('You win!');
+        setGameWon(true);
     }
 
     return (
@@ -90,19 +94,24 @@ export default function App() {
             <SecretWord 
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
-                gameStarted={gameStarted}
+                firstGameStarted={firstGameStarted}
             />
             <Keyboard
                 letters={letters}
                 dispatch={dispatch}
                 verifyLetter={verifyLetter}
             />
-            <GameStateAlert gameStateAlert={gameStateAlert}/>
+            <GameStateAlert 
+                gameStateAlert={gameStateAlert}
+                gameWon={gameWon}
+                gameOngoing={gameOngoing}
+                firstGameStarted={firstGameStarted}
+            />
             <StartButton 
                 startGame={startGame}
-                isGameOngoing={isGameOngoing}
+                gameOngoing={gameOngoing}
             />
-            <DifficultySettings isGameOngoing={isGameOngoing}/>
+            <DifficultySettings gameOngoing={gameOngoing}/>
             <footer>
                 <i>Development in progress!</i>
                 <br/>
