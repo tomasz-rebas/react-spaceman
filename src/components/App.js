@@ -57,6 +57,7 @@ export default function App() {
         let newSecretWordData = secretWordData;
         let letterGuessed = false;
         let allLettersVisisble = true;
+        let lastDrawingStage = false;
 
         for (let i = 0; i < secretWordData.length; i++) {
             if (secretWordData[i].letter === name) {
@@ -70,21 +71,25 @@ export default function App() {
 
         if (letterGuessed) {
             setSecretWordData(newSecretWordData);
-        } else {      
+        } else {
+            if (drawingStage === 8) {
+                lastDrawingStage = true;
+            }
             setDrawingStage(drawingStage + 1);
         }
 
         if (allLettersVisisble) {
-            console.log('You win!');
-            endGame();
+            endGame(true);
+        } else if (lastDrawingStage) {
+            endGame(false);
         }
     }
 
-    function endGame() {
+    function endGame(winner) {
         dispatch({ type: 'DISABLE_ALL' });
         setGameOngoing(false);
-        setGameStateAlert('You win!');
-        setGameWon(true);
+        setGameStateAlert(winner ? 'You win!' : 'You lose!');
+        setGameWon(winner);
     }
 
     return (
