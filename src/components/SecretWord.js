@@ -8,6 +8,7 @@ export default function SecretWord( { secretWordData, category, isFirstGameStart
                 className="letter-field"
                 key={'letter-field-' + index}
                 value={element.letter}
+                style={element.autofilled ? {color: "lightsalmon"} : {}}
             >
                 {element.visible ? element.letter : ''}
             </span>

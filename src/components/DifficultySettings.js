@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function DifficultySettings( { isGameOngoing }) {
-
-    const [hardDifficulty, setHardDifficulty] = useState(false);
+export default function DifficultySettings( { isGameOngoing, setDifficulty }) {
 
     return (
         <div className="difficulty-settings">
             <span>Difficulty: </span>
             <select 
-                onChange={e => {setHardDifficulty(e.target.value)}}
+                onChange={setDifficulty}
                 disabled={isGameOngoing ? 'disabled' : ''}
             >
                 <option value={false}>Easy</option>

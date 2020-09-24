@@ -19,6 +19,7 @@ export default function App() {
     const [isFirstGameStarted, setIsFirstGameStarted] = useState(false);
     const [gameWon, setIsGameWon] = useState(false);
     const [drawingStage, setDrawingStage] = useState(9);
+    const [drawingStageList, setDrawingStageList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
         ['q', false], ['w', false], ['e', false], ['r', false],
@@ -29,6 +30,11 @@ export default function App() {
         ['x', false], ['c', false], ['v', false], ['b', false],
         ['n', false], ['m', false]
     ]);
+
+    function setDifficulty(event) {
+        const hardDifficulty = (event.target.value === 'true');
+        setDrawingStageList(hardDifficulty ? [1, 4, 9] : [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    }
 
     function startGame() {
         const randomCategoryIndex = Math.floor(Math.random() * vocabularyData.length);
@@ -41,7 +47,7 @@ export default function App() {
         setSecretWordData(randomWord.map((letter) => {
             return {
                 letter: letter,
-                visible: letter === initiallyDisplayedLetter ? true : false
+                visible: letter === initiallyDisplayedLetter ? true : false,
             }
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
@@ -92,9 +98,10 @@ export default function App() {
         setIsGameWon(winner);
         if (!winner) {
             setSecretWordData(secretWordData.map(element => {
-                return {
+                return element.visible ? element : {
                     letter: element.letter,
-                    visible: true
+                    visible: true,
+                    autofilled: true
                 }
             }));
         }
@@ -124,7 +131,10 @@ export default function App() {
                 startGame={startGame}
                 isGameOngoing={isGameOngoing}
             />
-            <DifficultySettings isGameOngoing={isGameOngoing}/>
+            <DifficultySettings
+                isGameOngoing={isGameOngoing}
+                setDifficulty={setDifficulty}
+            />
             <footer>
                 <i>Development in progress!</i>
                 <br/>
