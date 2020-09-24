@@ -152,9 +152,9 @@ export default function App() {
                 setDrawingStageList={setDrawingStageList}
             />
             <footer>
-                <i>Development in progress!</i>
+                {/* <i>Development in progress!</i>
                 <br/>
-                <i>Some components may not be functional yet.</i>
+                <i>Some components may not be functional yet.</i> */}
             </footer>
         </div>
     );
