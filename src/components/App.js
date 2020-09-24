@@ -31,11 +31,6 @@ export default function App() {
         ['n', false], ['m', false]
     ]);
 
-    function setDifficulty(event) {
-        const hardDifficulty = (event.target.value === 'true');
-        setDrawingStageList(hardDifficulty ? [1, 4, 9] : [1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    }
-
     function startGame() {
         const randomCategoryIndex = Math.floor(Math.random() * vocabularyData.length);
         const words = vocabularyData[randomCategoryIndex].words;
@@ -133,7 +128,7 @@ export default function App() {
             />
             <DifficultySettings
                 isGameOngoing={isGameOngoing}
-                setDifficulty={setDifficulty}
+                setDrawingStageList={setDrawingStageList}
             />
             <footer>
                 <i>Development in progress!</i>
