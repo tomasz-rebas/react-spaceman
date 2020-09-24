@@ -81,10 +81,6 @@ export default function App() {
                 // if that's the case - increment again
                 for (let i = drawingStageIndex + 1; i < drawingStageList.length; i++) {
                     if (drawingStageList[i] !== -1) {
-                        // if (drawingStageIndex === drawingStageList.length - 1) { 
-                        //     console.log('drawingStageList[drawingStageIndex] = ' + drawingStageList[drawingStageIndex])
-                        //     lastDrawingStage = true;
-                        // }
                         return i;
                     }
                 }
