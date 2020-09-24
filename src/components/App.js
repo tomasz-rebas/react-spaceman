@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 
 import SpacemanPicture from './SpacemanPicture';
 import SecretWord from './SecretWord';
@@ -20,6 +20,7 @@ export default function App() {
     const [gameWon, setIsGameWon] = useState(false);
     const [drawingStageIndex, setDrawingStageIndex] = useState(8);
     const [drawingStageList, setDrawingStageList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    const [guessesLeft, setGuessesLeft] = useState();
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
         ['q', false], ['w', false], ['e', false], ['r', false],
@@ -84,8 +85,7 @@ export default function App() {
                         return i;
                     }
                 }
-            }
-            );
+            });
         }
 
         if (allLettersVisisble) {
@@ -93,6 +93,20 @@ export default function App() {
         } else if (lastDrawingStage) {
             endGame(false);
         }
+    }
+
+    useEffect(() => {
+        setGuessesLeft(getGuessesLeft());
+    }, [drawingStageIndex])
+
+    function getGuessesLeft() {
+        let count = 0;
+        for (let i = drawingStageIndex + 1; i < drawingStageList.length; i++) {
+            if (drawingStageList[i] !== -1) {
+                count++;
+            }
+        }
+        return count;
     }
 
     function endGame(winner) {
@@ -122,6 +136,7 @@ export default function App() {
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
                 isFirstGameStarted={isFirstGameStarted}
+                guessesLeft={guessesLeft}
             />
             <Keyboard
                 letters={letters}
