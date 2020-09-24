@@ -4,7 +4,7 @@ export default function DifficultySettings( { isGameOngoing, setDrawingStageList
 
     function setDifficulty(event) {
         const hardDifficulty = (event.target.value === 'true');
-        setDrawingStageList(hardDifficulty ? [1, 4, 9] : [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        setDrawingStageList(hardDifficulty ? [1, 2, 3, 4, -1, 6, -1, 8, 9] : [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     }
 
     return (

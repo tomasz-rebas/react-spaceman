@@ -46,7 +46,7 @@ export default function App() {
             }
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
-        setDrawingStageIndex(1);
+        setDrawingStageIndex(0);
         setIsGameOngoing(true);
         setIsFirstGameStarted(true);
         
@@ -73,10 +73,23 @@ export default function App() {
         if (letterGuessed) {
             setSecretWordData(newSecretWordData);
         } else {
-            if (drawingStageIndex === 8) {
+            if (drawingStageIndex === drawingStageList.length - 2) {
                 lastDrawingStage = true;
             }
-            setDrawingStageIndex(drawingStageIndex + 1);
+            setDrawingStageIndex(() => {
+                // increment index, unless the drawingStageList value for the incremented index is equal -1
+                // if that's the case - increment again
+                for (let i = drawingStageIndex + 1; i < drawingStageList.length; i++) {
+                    if (drawingStageList[i] !== -1) {
+                        // if (drawingStageIndex === drawingStageList.length - 1) { 
+                        //     console.log('drawingStageList[drawingStageIndex] = ' + drawingStageList[drawingStageIndex])
+                        //     lastDrawingStage = true;
+                        // }
+                        return i;
+                    }
+                }
+            }
+            );
         }
 
         if (allLettersVisisble) {
