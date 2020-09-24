@@ -59,7 +59,6 @@ export default function App() {
         let newSecretWordData = secretWordData;
         let letterGuessed = false;
         let allLettersVisisble = true;
-        let lastDrawingStage = false;
 
         for (let i = 0; i < secretWordData.length; i++) {
             if (secretWordData[i].letter === name) {
@@ -74,12 +73,7 @@ export default function App() {
         if (letterGuessed) {
             setSecretWordData(newSecretWordData);
         } else {
-            if (drawingStageIndex === drawingStageList.length - 2) {
-                lastDrawingStage = true;
-            }
             setDrawingStageIndex(() => {
-                // increment index, unless the drawingStageList value for the incremented index is equal -1
-                // if that's the case - increment again
                 for (let i = drawingStageIndex + 1; i < drawingStageList.length; i++) {
                     if (drawingStageList[i] !== -1) {
                         return i;
@@ -90,14 +84,10 @@ export default function App() {
 
         if (allLettersVisisble) {
             endGame(true);
-        } else if (lastDrawingStage) {
+        } else if (getGuessesLeft() <= 1) {
             endGame(false);
         }
     }
-
-    useEffect(() => {
-        setGuessesLeft(getGuessesLeft());
-    }, [drawingStageIndex])
 
     function getGuessesLeft() {
         let count = 0;
@@ -108,6 +98,10 @@ export default function App() {
         }
         return count;
     }
+
+    useEffect(() => {
+        setGuessesLeft(getGuessesLeft());
+    }, [drawingStageIndex])
 
     function endGame(winner) {
         dispatch({ type: 'DISABLE_ALL' });
