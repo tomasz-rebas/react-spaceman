@@ -24,7 +24,6 @@ body {
 
 .secret-word {
     margin-bottom: 20px;
-    height: 80px;
 }
 
 .letter-field {
@@ -46,5 +45,4 @@ footer {
     color: #ffb8b8;
     font-size: 0.8em;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
