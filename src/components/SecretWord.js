@@ -15,9 +15,9 @@ export default function SecretWord( { secretWordData, category, isFirstGameStart
     });
 
     return (
-        <div>
+        <div className="secret-word">
             <p>{isFirstGameStarted ? 'Category: ' + category : ''}</p>
-            <div className="secret-word">
+            <div>
                 {letterFields}
             </div>
         </div>
