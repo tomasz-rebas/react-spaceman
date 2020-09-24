@@ -18,7 +18,7 @@ export default function App() {
     const [isGameOngoing, setIsGameOngoing] = useState(false);
     const [isFirstGameStarted, setIsFirstGameStarted] = useState(false);
     const [gameWon, setIsGameWon] = useState(false);
-    const [drawingStage, setDrawingStage] = useState(9);
+    const [currentDrawingStage, setCurrentDrawingStage] = useState(9);
     const [drawingStageList, setDrawingStageList] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
     const [letters, dispatch] = useReducer(keyboardReducer, [
@@ -46,7 +46,7 @@ export default function App() {
             }
         }));
         setGameStateAlert('Guess the word to prevent the man from becoming a SPACEman!');
-        setDrawingStage(1);
+        setCurrentDrawingStage(1);
         setIsGameOngoing(true);
         setIsFirstGameStarted(true);
         
@@ -73,10 +73,10 @@ export default function App() {
         if (letterGuessed) {
             setSecretWordData(newSecretWordData);
         } else {
-            if (drawingStage === 8) {
+            if (currentDrawingStage === 8) {
                 lastDrawingStage = true;
             }
-            setDrawingStage(drawingStage + 1);
+            setCurrentDrawingStage(currentDrawingStage + 1);
         }
 
         if (allLettersVisisble) {
@@ -105,7 +105,7 @@ export default function App() {
     return (
         <div>
             <h1>Spaceman</h1>
-            <SpacemanPicture drawingStage={drawingStage}/>
+            <SpacemanPicture currentDrawingStage={currentDrawingStage}/>
             <SecretWord 
                 secretWordData={secretWordData}
                 category={vocabularyData[categoryIndex].category}
