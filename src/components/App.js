@@ -90,6 +90,14 @@ export default function App() {
         setIsGameOngoing(false);
         setGameStateAlert(winner ? 'You win!' : 'You lose!');
         setIsGameWon(winner);
+        if (!winner) {
+            setSecretWordData(secretWordData.map(element => {
+                return {
+                    letter: element.letter,
+                    visible: true
+                }
+            }));
+        }
     }
 
     return (
